@@ -21,7 +21,7 @@ npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 ```
 
 Task1.
-Prettieriin ed narii tailbarlana
+Prettieriin ed nariig tailbarlana
 "semi": true,
 "singleQuote": true,
 "trailingComma": "all",
