@@ -1,0 +1,19 @@
+name: CI
+on: [pull_request, push]
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install modules
+        run: npm i
+      - name: Run ESLint
+        run: npx eslint src
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install modules
+        run: npm i
+      - name: Run ESLint
+        run: npx prettier src --check
