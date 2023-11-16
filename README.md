@@ -126,6 +126,24 @@ module.exports = {
 };
 ```
 
+- Github action(lint)
+
+.github/workflows/check.yml
+```
+name: linter & formatter
+on: [push]
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install modules
+        run: npm i
+      - name: Run ESLint
+        run: npm run lint
+
+```
+
 
 Task1.
 Prettieriin ed nariig tailbarlana
