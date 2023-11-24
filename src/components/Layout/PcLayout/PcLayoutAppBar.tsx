@@ -1,14 +1,14 @@
-import { AppBar, Toolbar, IconButton, Typography, Button } from "@mui/material";
-import { Stack } from "@mui/system";
-import MenuIcon from "@mui/icons-material/Menu";
 import DeleteIcon from "@mui/icons-material/Delete";
+import MenuIcon from "@mui/icons-material/Menu";
+import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
+import { Stack } from "@mui/system";
 
 type Props = {
   dWidth: number;
   toggle: () => void;
 };
 
-export default function LayoutAppBar(props: Props) {
+export default function PcLayoutAppBar(props: Props) {
   return (
     <AppBar
       position="fixed"
@@ -36,14 +36,13 @@ export default function LayoutAppBar(props: Props) {
           sx={{ width: "100%" }}
         >
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            AppName
           </Typography>
           <Stack
             direction="row"
             justifyContent="flex-end"
             alignItems="center"
             spacing={2}
-            sx={{ width: "100%" }}
           >
             <IconButton
               aria-label="delete"

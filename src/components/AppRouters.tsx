@@ -1,10 +1,10 @@
 import React, { Fragment, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Loader from "./common/Loader";
+import About from "./Pages/About";
 import ErrorPage from "./Pages/ErrorPage";
 import Home from "./Pages/Home";
-import About from "./Pages/About";
 import IdCheck from "./Pages/IdCheck";
+import Loader from "./common/Loader";
 
 export const AppRoutes: React.FC = () => {
   return (
