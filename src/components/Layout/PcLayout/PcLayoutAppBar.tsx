@@ -2,6 +2,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import MenuIcon from "@mui/icons-material/Menu";
 import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   dWidth: number;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export default function PcLayoutAppBar(props: Props) {
+  const { t } = useTranslation();
   return (
     <AppBar
       position="fixed"
@@ -36,7 +38,7 @@ export default function PcLayoutAppBar(props: Props) {
           sx={{ width: "100%" }}
         >
           <Typography variant="h6" noWrap component="div">
-            AppName
+            {t("appName")}
           </Typography>
           <Stack
             direction="row"

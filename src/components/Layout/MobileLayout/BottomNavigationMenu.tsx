@@ -18,7 +18,7 @@ export default function BottomMenu() {
               <BottomNavigationAction
                 sx={{ color: location.pathname === route.path ? red[500] : "" }}
                 showLabel={true}
-                label={route.text}
+                label={route.textKey}
                 icon={<RestoreIcon />}
               />
             </Link>

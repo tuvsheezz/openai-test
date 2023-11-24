@@ -7,10 +7,13 @@ import {
   ListItemText,
 } from "@mui/material";
 import { red } from "@mui/material/colors";
+import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
+import ChangeLanguageComponent from "../ChangeLanguageComponent";
 import { routes } from "../routes";
 
 export default function SideMenu() {
+  const { t } = useTranslation();
   const location = useLocation();
   return (
     <List>
@@ -25,12 +28,13 @@ export default function SideMenu() {
                 <ListItemIcon>
                   <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary={route.text} />
+                <ListItemText primary={t(route.textKey, { ns: "menu" })} />
               </ListItemButton>
             </ListItem>
           </Link>
         );
       })}
+      <ChangeLanguageComponent />
     </List>
   );
 }

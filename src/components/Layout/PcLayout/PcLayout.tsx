@@ -5,6 +5,7 @@ import Drawer from "@mui/material/Drawer";
 import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
 
+import { useTranslation } from "react-i18next";
 import { AppRoutes } from "../../AppRouters";
 import PcLayoutAppBar from "./PcLayoutAppBar";
 import SideMenu from "./SideMenu";
@@ -17,6 +18,7 @@ interface Props {
 
 export default function PcLayout(props: Props) {
   const { window } = props;
+  const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -86,6 +88,7 @@ export default function PcLayout(props: Props) {
         }}
       >
         <Toolbar />
+        {t("hi")}
         <AppRoutes />
       </Box>
     </Box>

@@ -145,6 +145,13 @@ jobs:
 ```
 
 
+i18n
+
+```
+➜  openai-test git:(feature/i18n) npm install i18next i18next-browser-languagedetector react-i18next
+```
+
+
 Task1.
 Prettieriin ed nariig tailbarlana
 "semi": true,
