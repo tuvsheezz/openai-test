@@ -13,17 +13,7 @@ export default function CompletionPage() {
   const { setTitle } = useContext(PageTitleContext);
   const [states, setStates] = useState<chatCompletionAPIProps>({
     model: chatCompletionModels[0],
-    messages: [
-      {
-        role: 'user',
-        content: '初めてのChat Completion利用です',
-      },
-      {
-        role: 'assistant',
-        content:
-          'こんにちは！初めてのChat Completion利用、よろしくお願いします。どのようなお手伝いができますか？',
-      },
-    ],
+    messages: [],
     apiKeyError: '',
   });
   const [loading, setLoading] = useState<boolean>(false);

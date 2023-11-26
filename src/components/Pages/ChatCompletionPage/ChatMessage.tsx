@@ -37,7 +37,8 @@ export default function ChatMessage(props: Props) {
           </Stack>
         </IconButton>
       </Stack>
-      <Paper sx={{ p: 2 }}>{content}</Paper>
+
+      {typeof content === 'string' && <Paper sx={{ p: 2 }}>{content}</Paper>}
     </Stack>
   );
 }

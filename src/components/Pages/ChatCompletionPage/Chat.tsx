@@ -54,7 +54,7 @@ export default function Chat(props: Props) {
       .then((response) => {
         setStates(states);
         tmpMessages.push(response.choices[0].message);
-        console.log(response);
+        setUserInput('');
       })
       .catch((error: { status: number }) => {
         if (error.status === 401)

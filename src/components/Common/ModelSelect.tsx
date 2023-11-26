@@ -3,18 +3,12 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import {
-  chatCompletionAPIHandleChangeType,
-  completionAPIHandleChangeType,
-  modelType,
-} from '../../types/types';
+import { modelType, stateChangeType } from '../../types/types';
 import InputPopover from './InputPopover';
 
 type Props = {
   model: modelType;
-  handleChange:
-    | completionAPIHandleChangeType
-    | chatCompletionAPIHandleChangeType;
+  handleChange: stateChangeType;
   models: modelType[];
 };
 

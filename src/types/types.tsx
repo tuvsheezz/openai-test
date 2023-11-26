@@ -54,3 +54,33 @@ export type chatCompletionAPIHandleArgType = {
 export type chatCompletionAPIHandleChangeType = (
   changes: chatCompletionAPIHandleArgType[],
 ) => void;
+
+// image generation: dalle-create
+export type dalle2CreateImageSizeType = '256x256' | '512x512' | '1024x1024';
+export type dalle3CreateImageSizeType = '1024x1024' | '1024x1792' | '1792x1024';
+
+export type dalleCreateAPIProps = {
+  model: modelType;
+  n: number;
+  prompt: string;
+  size: dalle2CreateImageSizeType | dalle3CreateImageSizeType;
+  imageUrl: string;
+  revisedPrompt: string;
+
+  apiKeyError: string;
+};
+export type dalleCreateAPIPropsKeys = keyof dalleCreateAPIProps;
+
+export type dalleCreateAPIHandleArgType = {
+  key: dalleCreateAPIPropsKeys;
+  value: string | modelType | number;
+};
+
+export type dalleCreateAPIHandleChangeType = (
+  changes: dalleCreateAPIHandleArgType[],
+) => void;
+
+export type stateChangeType =
+  | completionAPIHandleChangeType
+  | chatCompletionAPIHandleChangeType
+  | dalleCreateAPIHandleChangeType;

@@ -2,17 +2,12 @@ import { Stack, TextField } from '@mui/material';
 import { useContext } from 'react';
 import { apiKeyDescription } from '../../constants/constants';
 import { ApiKeyContext } from '../../contexts/ApiKeyProvider';
-import {
-  chatCompletionAPIHandleChangeType,
-  completionAPIHandleChangeType,
-} from '../../types/types';
+import { stateChangeType } from '../../types/types';
 import InputPopover from './InputPopover';
 
 type Props = {
   error: string;
-  handleChange:
-    | completionAPIHandleChangeType
-    | chatCompletionAPIHandleChangeType;
+  handleChange: stateChangeType;
 };
 
 export default function ApiKey(props: Props) {

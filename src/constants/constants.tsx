@@ -1,4 +1,8 @@
-import { modelType } from '../types/types';
+import {
+  dalle2CreateImageSizeType,
+  dalle3CreateImageSizeType,
+  modelType,
+} from '../types/types';
 
 export const chatCompletionModels: modelType[] = [
   {
@@ -29,6 +33,22 @@ export const completionModels: modelType[] = [
       'Most capable GPT-3 model. Can do any task the other models can do, often with higher quality',
     maxTokens: 2049,
     trainingData: 'Up to Oct 2019',
+  },
+];
+
+export const dalleCreateModels: modelType[] = [
+  {
+    name: 'dall-e-3',
+    description: 'The latest DALL·E model released in Nov 2023.',
+    maxTokens: 0,
+    trainingData: '',
+  },
+  {
+    name: 'dall-e-2',
+    description:
+      'The previous DALL·E model released in Nov 2022. The 2nd iteration of DALL·E with more realistic, accurate, and 4x greater resolution images than the original model.',
+    maxTokens: 0,
+    trainingData: '',
   },
 ];
 
@@ -68,4 +88,16 @@ export const topPDescription: string[] = [
 export const stopDescription: string[] = [
   'Up to 4 sequences where the API will stop generating further tokens.',
   'The returned text will not contain the stop sequence.',
+];
+
+export const dalle2CreateImageSize: dalle2CreateImageSizeType[] = [
+  '256x256',
+  '512x512',
+  '1024x1024',
+];
+
+export const dalle3CreateImageSize: dalle3CreateImageSizeType[] = [
+  '1024x1024',
+  '1024x1792',
+  '1792x1024',
 ];
