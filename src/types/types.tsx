@@ -1,3 +1,5 @@
+import { ChatCompletionMessageParam } from 'openai/resources/index.mjs';
+
 export type menuType<T> = {
   label: string;
   url: string;
@@ -24,6 +26,13 @@ export type completionAPIProps = {
   maxTokenError: string;
 };
 
+export type chatCompletionAPIProps = {
+  model: modelType;
+  messages: ChatCompletionMessageParam[];
+
+  apiKeyError: string;
+};
+
 export type completionAPIPropsKeys = keyof completionAPIProps;
 
 export type completionAPIHandleArgType = {
@@ -32,5 +41,16 @@ export type completionAPIHandleArgType = {
 };
 
 export type completionAPIHandleChangeType = (
-  changes: completionAPIHandleArgType[]
+  changes: completionAPIHandleArgType[],
+) => void;
+
+export type chatCompletionAPIPropsKeys = keyof chatCompletionAPIProps;
+
+export type chatCompletionAPIHandleArgType = {
+  key: chatCompletionAPIPropsKeys;
+  value: string | modelType | number | ChatCompletionMessageParam[];
+};
+
+export type chatCompletionAPIHandleChangeType = (
+  changes: chatCompletionAPIHandleArgType[],
 ) => void;

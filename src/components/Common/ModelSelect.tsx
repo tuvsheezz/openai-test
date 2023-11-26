@@ -3,18 +3,24 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { completionModels } from '../../constants/constants';
-import { completionAPIHandleChangeType, modelType } from '../../types/types';
+import {
+  chatCompletionAPIHandleChangeType,
+  completionAPIHandleChangeType,
+  modelType,
+} from '../../types/types';
 import InputPopover from './InputPopover';
 
 type Props = {
   model: modelType;
-  handleChange: completionAPIHandleChangeType;
+  handleChange:
+    | completionAPIHandleChangeType
+    | chatCompletionAPIHandleChangeType;
+  models: modelType[];
 };
 
 export default function ModelSelect(props: Props) {
   const localHandleChange = (event: SelectChangeEvent) => {
-    completionModels.map((model) => {
+    props.models.map((model) => {
       if (model.name === event.target.value)
         props.handleChange([{ key: 'model', value: model }]);
     });
@@ -42,9 +48,9 @@ export default function ModelSelect(props: Props) {
           id="model-select"
           value={props.model.name}
           onChange={localHandleChange}
-          label="Age"
+          label="Model"
         >
-          {completionModels.map((model) => {
+          {props.models.map((model) => {
             return (
               <MenuItem key={model.name} value={model.name}>
                 {model.name}

@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { completionModels } from '../../../constants/constants';
 import { PageTitleContext } from '../../../contexts/PageTitleProvider';
@@ -24,19 +25,22 @@ export default function CompletionPage() {
 
   useEffect(() => {
     setTitle?.('Completion API');
-  }, []);
+  }, [setTitle]);
 
   return (
-    <>
-      <PromptForm
-        states={states}
-        setStates={setStates}
-        loading={loading}
-        setLoading={setLoading}
-        setResponse={setResponse}
-      />
-
-      <TextResponse text={response} sx={{ mt: 2 }} />
-    </>
+    <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
+        <PromptForm
+          states={states}
+          setStates={setStates}
+          loading={loading}
+          setLoading={setLoading}
+          setResponse={setResponse}
+        />
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <TextResponse text={response} />
+      </Grid>
+    </Grid>
   );
 }

@@ -2,8 +2,8 @@ import { FormHelperText, Input, Stack } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import { maxTokensDescription } from '../../constants/constants';
-import InputPopover from './InputPopover';
 import { completionAPIHandleChangeType } from '../../types/types';
+import InputPopover from './InputPopover';
 
 type Props = {
   maxToken: number;

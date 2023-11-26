@@ -1,8 +1,8 @@
-import * as React from 'react';
-import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
 import InfoIcon from '@mui/icons-material/Info';
 import { IconButton, Stack } from '@mui/material';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import * as React from 'react';
 
 type Props = {
   text: string[];

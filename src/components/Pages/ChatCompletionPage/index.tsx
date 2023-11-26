@@ -1,17 +1,56 @@
-import { Fragment, useContext, useEffect } from "react";
-import { PageTitleContext } from "../../../contexts/PageTitleProvider";
-import ApiKey from "../../Common/ApiKey";
+import { Stack } from '@mui/system';
+import { useContext, useEffect, useState } from 'react';
+import { chatCompletionModels } from '../../../constants/constants';
+import { PageTitleContext } from '../../../contexts/PageTitleProvider';
+import {
+  chatCompletionAPIHandleArgType,
+  chatCompletionAPIProps,
+} from '../../../types/types';
+import Chat from './Chat';
+import PromptForm from './PromptForm';
 
 export default function CompletionPage() {
   const { setTitle } = useContext(PageTitleContext);
+  const [states, setStates] = useState<chatCompletionAPIProps>({
+    model: chatCompletionModels[0],
+    messages: [
+      {
+        role: 'user',
+        content: '初めてのChat Completion利用です',
+      },
+      {
+        role: 'assistant',
+        content:
+          'こんにちは！初めてのChat Completion利用、よろしくお願いします。どのようなお手伝いができますか？',
+      },
+    ],
+    apiKeyError: '',
+  });
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setTitle?.("Chat Completion API");
-  }, []);
+    setTitle?.('Chat Completion API');
+  }, [setTitle]);
+
+  const handleStateChange = (changes: chatCompletionAPIHandleArgType[]) => {
+    let newStates = { ...states };
+    changes.forEach((change) => {
+      if (change.key) newStates = { ...newStates, [change.key]: change.value };
+    });
+
+    setStates({ ...newStates });
+  };
 
   return (
-    <Fragment>
-      <ApiKey />
-    </Fragment>
+    <Stack direction="column" spacing={3}>
+      <PromptForm states={states} handleStateChange={handleStateChange} />
+      <Chat
+        states={states}
+        setStates={setStates}
+        loading={loading}
+        setLoading={setLoading}
+        handleStateChange={handleStateChange}
+      />
+    </Stack>
   );
 }

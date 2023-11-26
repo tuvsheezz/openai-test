@@ -1,6 +1,18 @@
 import SaveIcon from '@mui/icons-material/Save';
 import { LoadingButton } from '@mui/lab';
-import { Button, Paper, Stack } from '@mui/material';
+import { Paper, Stack } from '@mui/material';
+import OpenAI from 'openai';
+import { CompletionCreateParamsNonStreaming } from 'openai/resources/completions.mjs';
+import { useContext } from 'react';
+import {
+  completionModels,
+  promptDescription,
+  stopDescription,
+  suffixDescription,
+  temperatureDescription,
+  topPDescription,
+} from '../../../constants/constants';
+import { ApiKeyContext } from '../../../contexts/ApiKeyProvider';
 import {
   completionAPIHandleArgType,
   completionAPIProps,
@@ -8,19 +20,8 @@ import {
 import ApiKey from '../../Common/ApiKey';
 import MaxTokens from '../../Common/MaxTokens';
 import ModelSelect from '../../Common/ModelSelect';
-import TextInputComponent from '../../Common/TextInputComponent';
-import OpenAI from 'openai';
-import { useContext, useState } from 'react';
-import { ApiKeyContext } from '../../../contexts/ApiKeyProvider';
 import SliderComponent from '../../Common/SliderComponent';
-import {
-  promptDescription,
-  stopDescription,
-  suffixDescription,
-  temperatureDescription,
-  topPDescription,
-} from '../../../constants/constants';
-import { CompletionCreateParamsNonStreaming } from 'openai/resources/completions.mjs';
+import TextInputComponent from '../../Common/TextInputComponent';
 
 type Props = {
   states: completionAPIProps;
@@ -33,8 +34,6 @@ type Props = {
 export default function PromptForm(props: Props) {
   const { apiKey } = useContext(ApiKeyContext);
   const { states, setStates, loading, setLoading, setResponse } = props;
-
-  const [showMore, setShowMore] = useState<boolean>(false);
 
   const handleStateChange = (changes: completionAPIHandleArgType[]) => {
     let newStates = { ...states };
@@ -62,15 +61,16 @@ export default function PromptForm(props: Props) {
       temperature: states.temperature === 0.6 ? null : states.temperature,
       top_p: states.top_p === 0.6 ? null : states.top_p,
     };
-    if (!!states.suffix) request.suffix = states.suffix;
-    if (!!states.stop) request.stop = states.stop;
+
+    if (states.suffix) request.suffix = states.suffix;
+    if (states.stop) request.stop = states.stop;
 
     await openai.completions
       .create(request)
-      .then((response) => {
+      .then((response: { choices: { text: string }[] }) => {
         setResponse(response.choices[0].text);
       })
-      .catch((error) => {
+      .catch((error: { status: number }) => {
         if (error.status === 401)
           handleStateChange([{ key: 'apiKeyError', value: 'Invalid API key' }]);
       })
@@ -86,7 +86,11 @@ export default function PromptForm(props: Props) {
         spacing={2}
       >
         <ApiKey error={states.apiKeyError} handleChange={handleStateChange} />
-        <ModelSelect model={states.model} handleChange={handleStateChange} />
+        <ModelSelect
+          model={states.model}
+          handleChange={handleStateChange}
+          models={completionModels}
+        />
         <MaxTokens
           maxToken={states.maxToken}
           max={states.model.maxTokens}
@@ -101,42 +105,38 @@ export default function PromptForm(props: Props) {
           description={promptDescription}
           minRows={3}
         />
-        {!showMore && (
-          <>
-            <TextInputComponent
-              label="Suffix"
-              prompt={states.suffix}
-              stateKey="suffix"
-              handleChange={handleStateChange}
-              description={suffixDescription}
-              minRows={3}
-            />
-            <SliderComponent
-              label="Temperature"
-              temperature={states.temperature}
-              stateKey="temperature"
-              handleChange={handleStateChange}
-              max={2}
-              description={temperatureDescription}
-            />
-            <SliderComponent
-              label="top_p"
-              temperature={states.top_p}
-              stateKey="top_p"
-              handleChange={handleStateChange}
-              max={1}
-              description={topPDescription}
-            />
-            <TextInputComponent
-              label="Stop"
-              prompt={states.stop || ''}
-              stateKey="stop"
-              handleChange={handleStateChange}
-              description={stopDescription}
-              minRows={1}
-            />
-          </>
-        )}
+        <TextInputComponent
+          label="Suffix"
+          prompt={states.suffix}
+          stateKey="suffix"
+          handleChange={handleStateChange}
+          description={suffixDescription}
+          minRows={3}
+        />
+        <SliderComponent
+          label="Temperature"
+          temperature={states.temperature}
+          stateKey="temperature"
+          handleChange={handleStateChange}
+          max={2}
+          description={temperatureDescription}
+        />
+        <SliderComponent
+          label="top_p"
+          temperature={states.top_p}
+          stateKey="top_p"
+          handleChange={handleStateChange}
+          max={1}
+          description={topPDescription}
+        />
+        <TextInputComponent
+          label="Stop"
+          prompt={states.stop || ''}
+          stateKey="stop"
+          handleChange={handleStateChange}
+          description={stopDescription}
+          minRows={1}
+        />
 
         <Stack
           direction="row"
@@ -145,14 +145,6 @@ export default function PromptForm(props: Props) {
           spacing={2}
           sx={{ width: '100%' }}
         >
-          <Button
-            sx={{ width: '150px' }}
-            color="secondary"
-            onClick={() => setShowMore(!showMore)}
-          >
-            {showMore ? 'Hide' : 'Show More'}
-          </Button>
-
           <LoadingButton
             loading={loading}
             loadingPosition="start"

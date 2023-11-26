@@ -57,6 +57,11 @@ export const Layout = (props: Props) => {
       label: 'Chat Completion API',
       url: '/chat_completion',
     },
+    {
+      icon: <LinkIcon />,
+      label: 'Image generation API',
+      url: '/image_generation',
+    },
   ];
 
   const drawer = (

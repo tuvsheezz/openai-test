@@ -4,64 +4,9 @@ export const chatCompletionModels: modelType[] = [
   {
     name: 'gpt-3.5-turbo',
     description:
-      'Most capable GPT-3.5 model and optimized for chat at 1/10th the cost of text-davinci-003. Will be updated with our latest model iteration 2 weeks after it is released.',
-    maxTokens: 4097,
+      'gpt-3.5-turbo	Currently points to gpt-3.5-turbo-0613. Will point to gpt-3.5-turbo-1106 starting Dec 11, 2023. See continuous model upgrades.',
+    maxTokens: 4096,
     trainingData: 'Up to Sep 2021',
-  },
-  {
-    name: 'gpt-3.5-turbo-16k',
-    description:
-      'Same capabilities as the standard gpt-3.5-turbo model but with 4 times the context.',
-    maxTokens: 16385,
-    trainingData: 'Up to Sep 2021',
-  },
-  {
-    name: 'gpt-3.5-turbo-instruct',
-    description:
-      'Similar capabilities as text-davinci-003 but compatible with legacy Completions endpoint and not Chat Completions.',
-    maxTokens: 4097,
-    trainingData: 'Up to Sep 2021',
-  },
-  {
-    name: 'gpt-3.5-turbo-0613',
-    description:
-      'Snapshot of gpt-3.5-turbo from June 13th 2023 with function calling data. Unlike gpt-3.5-turbo, this model will not receive updates, and will be deprecated 3 months after a new version is released.',
-    maxTokens: 4097,
-    trainingData: 'Up to Sep 2021',
-  },
-  {
-    name: 'gpt-3.5-turbo-16k-0613',
-    description:
-      'Snapshot of gpt-3.5-turbo-16k from June 13th 2023. Unlike gpt-3.5-turbo-16k, this model will not receive updates, and will be deprecated 3 months after a new version is released.',
-    maxTokens: 16385,
-    trainingData: 'Up to Sep 2021',
-  },
-  {
-    name: 'gpt-3.5-turbo-0301 (Legacy)',
-    description:
-      'Snapshot of gpt-3.5-turbo from March 1st 2023. Unlike gpt-3.5-turbo, this model will not receive updates, and will be deprecated on June 13th 2024 at the earliest.',
-    maxTokens: 4097,
-    trainingData: 'Up to Sep 2021',
-  },
-  {
-    name: 'text-davinci-003 (Legacy)',
-    description:
-      'Can do any language task with better quality, longer output, and consistent instruction-following than the curie, babbage, or ada models. Also supports some additional features such as inserting text.',
-    maxTokens: 4097,
-    trainingData: 'Up to Jun 2021',
-  },
-  {
-    name: 'text-davinci-002 (Legacy)',
-    description:
-      'Similar capabilities to text-davinci-003 but trained with supervised fine-tuning instead of reinforcement learning.',
-    maxTokens: 4097,
-    trainingData: 'Up to Jun 2021',
-  },
-  {
-    name: 'code-davinci-002 (Legacy)',
-    description: 'Optimized for code-completion tasks',
-    maxTokens: 8001,
-    trainingData: 'Up to Jun 2021',
   },
 ];
 
